@@ -1,29 +1,30 @@
 package com.finalproject.syirfan.Entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="bus")
 public class bus {
-    @NotBlank
+    @Id
+    @GeneratedValue(generator="uuid2")
+    @GenericGenerator(name="uuid2",strategy = "uuid2")
+    private String id;
     private String code;
-    @NotBlank
     private int capacity;
-    @NotBlank
     private String make;
-    @NotBlank
-    private long agency;
+    private String agency;
 
-    @NotBlank
-    private long id;
-
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,11 +52,11 @@ public class bus {
         this.make = make;
     }
 
-    public long getAgency() {
+    public String getAgency() {
         return agency;
     }
 
-    public void setAgency(long agency) {
+    public void setAgency(String agency) {
         this.agency = agency;
     }
 }

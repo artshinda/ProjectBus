@@ -2,11 +2,9 @@ package com.finalproject.syirfan.Entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,16 +13,12 @@ public class tripSchedule {
     @Id
     @GeneratedValue(generator="uuid2")
     @GenericGenerator(name="uuid2",strategy = "uuid2")
-    @NotBlank
     private String id;
-    @NotBlank
     private String tripDate;
-    @NotBlank
     private int availableSeats;
-    @NotBlank
-    private long tripDetail;
-    @NotBlank
-    private Set<Long> tiketSold;
+    private String tripDetail;
+    @ElementCollection
+    private Set<Long> tiketSold = new HashSet<>();;
 
     public String getId() {
         return id;
@@ -50,11 +44,11 @@ public class tripSchedule {
         this.availableSeats = availableSeats;
     }
 
-    public long getTripDetail() {
+    public String getTripDetail() {
         return tripDetail;
     }
 
-    public void setTripDetail(long tripDetail) {
+    public void setTripDetail(String tripDetail) {
         this.tripDetail = tripDetail;
     }
 

@@ -1,37 +1,32 @@
 package com.finalproject.syirfan.Entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
 @Table(name="ticket")
 public class ticket {
-    @NotBlank
+    @Id
+    @GeneratedValue(generator="uuid2")
+    @GenericGenerator(name="uuid2",strategy = "uuid2")
+    private String id;
     private int seatNumber;
-    @NotBlank
     private Boolean cancellable;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date journeyDate;
-    @NotBlank
-    private long passenger;
-    @NotBlank
-    private long tripSchedule;
+    private String passenger;
+    private String tripSchedule;
 
-    @NotBlank
-    private long id;
-
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -59,19 +54,19 @@ public class ticket {
         this.journeyDate = journeyDate;
     }
 
-    public long getPassenger() {
+    public String getPassenger() {
         return passenger;
     }
 
-    public void setPassenger(long passenger) {
+    public void setPassenger(String passenger) {
         this.passenger = passenger;
     }
 
-    public long getTripSchedule() {
+    public String getTripSchedule() {
         return tripSchedule;
     }
 
-    public void setTripSchedule(long tripSchedule) {
+    public void setTripSchedule(String tripSchedule) {
         this.tripSchedule = tripSchedule;
     }
 

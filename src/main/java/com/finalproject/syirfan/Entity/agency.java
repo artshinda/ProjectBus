@@ -15,15 +15,10 @@ public class agency {
     @GeneratedValue(generator="uuid2")
     @GenericGenerator(name="uuid2",strategy = "uuid2")
     private String id;
-
-    @NotBlank
     private String code;
-    @NotBlank
     private String name;
-    @NotBlank
     private String details;
-    @NotBlank
-    private long owner;
+    private String owner;
 
     public String getId() {
         return id;
@@ -57,11 +52,11 @@ public class agency {
         this.details = details;
     }
 
-    public long getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(long owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 }

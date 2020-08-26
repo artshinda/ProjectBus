@@ -12,18 +12,12 @@ public class user {
     @GeneratedValue(generator="uuid2")
     @GenericGenerator(name="uuid2",strategy = "uuid2")
     private String id;
-    @NotBlank
     private String email;
-    @NotBlank
     private String password;
-    @NotBlank
     private String firstName;
-    @NotBlank
     private String lastName;
-    @NotBlank
     private String mobileNumber;
-    @NotBlank
-    private long roles;
+    private String roles;
 
     public String getId() {
         return id;
@@ -73,11 +67,11 @@ public class user {
         this.mobileNumber = mobileNumber;
     }
 
-    public long getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(long roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 }
