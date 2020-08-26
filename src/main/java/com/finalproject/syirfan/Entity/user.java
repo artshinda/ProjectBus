@@ -19,9 +19,9 @@ public class user {
     @NotBlank
     private String lastName;
     @NotBlank
-    private int mobileNumber;
+    private String mobileNumber;
     @NotBlank
-    private int roles;
+    private long roles;
 
     public long getId() {
         return id;
@@ -63,19 +63,19 @@ public class user {
         this.lastName = lastName;
     }
 
-    public int getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(int mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getRoles() {
+    public long getRoles() {
         return roles;
     }
 
-    public void setRoles(int roles) {
+    public void setRoles(long roles) {
         this.roles = roles;
     }
 }
