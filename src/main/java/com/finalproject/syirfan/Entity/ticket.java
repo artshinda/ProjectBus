@@ -1,14 +1,24 @@
 package com.finalproject.syirfan.Entity;
 
-import javax.validation.constraints.NotBlank;
+import org.springframework.data.annotation.CreatedDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import java.util.Date;
+
+@Entity
+@Table(name="ticket")
 public class ticket {
     @NotBlank
     private int seatNumber;
     @NotBlank
     private Boolean cancellable;
-    @NotBlank
-    private String journeyDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date journeyDate;
     @NotBlank
     private long passenger;
     @NotBlank
@@ -41,11 +51,11 @@ public class ticket {
         this.cancellable = cancellable;
     }
 
-    public String getJourneyDate() {
+    public Date getJourneyDate() {
         return journeyDate;
     }
 
-    public void setJourneyDate(String journeyDate) {
+    public void setJourneyDate(Date journeyDate) {
         this.journeyDate = journeyDate;
     }
 

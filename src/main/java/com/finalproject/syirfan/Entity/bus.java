@@ -1,7 +1,11 @@
 package com.finalproject.syirfan.Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+@Entity
+@Table(name="bus")
 public class bus {
     @NotBlank
     private String code;

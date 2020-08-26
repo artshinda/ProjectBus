@@ -9,21 +9,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name="agency")
-public class agency {
+@Table(name="stop")
+public class stop {
     @Id
     @GeneratedValue(generator="uuid2")
     @GenericGenerator(name="uuid2",strategy = "uuid2")
     private String id;
-
     @NotBlank
     private String code;
     @NotBlank
     private String name;
     @NotBlank
-    private String details;
-    @NotBlank
-    private long owner;
+    private String detail;
 
     public String getId() {
         return id;
@@ -49,19 +46,12 @@ public class agency {
         this.name = name;
     }
 
-    public String getDetails() {
-        return details;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
-    public long getOwner() {
-        return owner;
-    }
-
-    public void setOwner(long owner) {
-        this.owner = owner;
-    }
 }
