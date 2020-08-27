@@ -16,7 +16,7 @@ function createUser(){
                 alert("Passwords Didn't Match!!");
             }else{
                 $.ajax({
-                 url :  "/createNewAccount",
+                 url :  "/api/createNewAccount",
                  type: request_method,
                  dataType: 'json',
                  contentType: 'application/json',

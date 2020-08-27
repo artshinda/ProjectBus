@@ -8,6 +8,7 @@ import com.finalproject.syirfan.Entity.user;
 import com.finalproject.syirfan.Request.registerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.Timestamp;
 
 @RestController
+@RequestMapping("/api")
 public class userController {
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private userDAO userDAO;
@@ -35,7 +40,7 @@ public class userController {
         us.setLastName(registerRequest.getLastName());
         us.setEmail(registerRequest.getEmail());
         us.setMobileNumber(registerRequest.getMobileNumber());
-        us.setPassword(registerRequest.getPassword());
+        us.setPassword(bCryptPasswordEncoder.encode(registerRequest.getPassword()));
         us.setRoles(roleDAO.findIdByRole("Owner").getId());
         userDAO.save(us);
 

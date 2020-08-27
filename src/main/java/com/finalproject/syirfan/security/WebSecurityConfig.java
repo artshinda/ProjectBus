@@ -41,24 +41,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/resources/**").permitAll()
+        String[] resources = new String[]{
+                "/css/**","/icons/**","/img/**","/js/**","/layer/**","/scss/**","/vendor/**"
+        };
+        http.authorizeRequests().antMatchers(resources).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                    .loginPage("/login")
+                    .permitAll()
+                    .failureUrl("/login?error=true")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
                 .and()
                 .logout().permitAll();
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(
-                "/resources/*", "/static/", "/css/", "/js/", "/images/*",
-                "/resources/static/*", "/css/", "/js/", "/img/", "/fonts/*",
-                "/images/*", "/scss/", "/vendor/", "/favicon.ico", "/auth/*", "/favicon.png",
-                "/v2/api-docs", "/configuration/ui", "/configuration/security", "/swagger-ui.html",
-                "/webjars/*", "/swagger-resources/*", "/swagge‌​r-ui.html", "/actuator",
-                "/actuator/**");
+    public void configure(WebSecurity web) throws Exception{
+        web.ignoring().antMatchers("/signUp","/api/**");
     }
+
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers(
+//                "/resources/*", "/static/", "/css/", "/js/", "/images/*",
+//                "/resources/static/*", "/css/", "/js/", "/img/", "/fonts/*",
+//                "/images/*", "/scss/", "/vendor/", "/favicon.ico", "/auth/*", "/favicon.png",
+//                "/v2/api-docs", "/configuration/ui", "/configuration/security", "/swagger-ui.html",
+//                "/webjars/*", "/swagger-resources/*", "/swagge‌​r-ui.html", "/actuator",
+//                "/actuator/**");
+//    }
 }
