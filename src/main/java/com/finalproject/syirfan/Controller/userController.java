@@ -7,6 +7,7 @@ import com.finalproject.syirfan.Entity.agency;
 import com.finalproject.syirfan.Entity.user;
 import com.finalproject.syirfan.Request.registerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +28,7 @@ public class userController {
     private roleDAO roleDAO;
 
     @PostMapping("/createNewAccount")
-    public String createNewAccount(@RequestBody registerRequest registerRequest) {
+    public HttpStatus createNewAccount(@RequestBody registerRequest registerRequest) {
 
         user us = new user();
         us.setFirstName(registerRequest.getFirstName());
@@ -41,9 +42,10 @@ public class userController {
         agency ag = new agency();
         ag.setName(registerRequest.getAgencyName());
         ag.setDetails(registerRequest.getAgencyDetail());
+        ag.setOwner(us.getId());
         agencyDAO.save(ag);
 
-        return "login";
+        return HttpStatus.OK;
     }
 
 }

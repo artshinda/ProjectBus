@@ -22,6 +22,7 @@ function createUser(){
                  contentType: 'application/json',
                  data: JSON.stringify(registerRequest),
                  success: function(data) {
+                        alert("Account Berhasil Dibuat");
                         window.location.href = 'http://localhost:8080/login';
                      },
                         error: function(data) {
